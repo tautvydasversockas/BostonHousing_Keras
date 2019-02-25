@@ -22,8 +22,8 @@ def build_model():
     return model
 
 k = 4
-num_val_samples = len(ttrain_data) // k
-num_epochs = 100
+num_val_samples = len(train_data) // k
+num_epochs = 80
 all_scores = []
 
 for i in range(k) :
@@ -41,7 +41,10 @@ for i in range(k) :
          train_targets[:(i + 1) * num_val_samples]],
         axis=0)
 
-    model.build_model()
+    model = build_model()
     model.fit(partial_train_data, partial_train_targets, epochs=num_epochs, batch_size=1, verbose=0)
-    val_mse, val_mae = models.evaluate(val_data, val_targets, verbose=0)
+    val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
     all_scores.append(val_mae)
+
+print(all_scores)
+print(np.mean(all_scores))
