@@ -1,1 +1,2 @@
-# Boston Housing Price Prediction with Keras
+# BostonHousing_Keras
+Boston housing price prediction with Keras
